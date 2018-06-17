@@ -1,0 +1,24 @@
+<h1>Preferred books of <%= @user.name%></h1>
+
+<%= link_to 'populate and refresh', user_book_refresh_path(@user, @new_books ? @new_books.last : @user.preferred_books.last) %>
+<table style="width:100%">
+  <tr>
+    <th>Title</th>
+    <th>Published on</th> 
+    <th>Author</th>
+  </tr>
+  <% @books.each do |book| %>
+    <tr>
+      <td><%= book.title%></td>
+      <td><%= book.published_on%></td>
+      <td><%= book.author.name%></td>
+    </tr>
+  <%end%>
+  <% @new_books.each do |book| %>
+    <tr style='background-color: #f1f2f2'>
+      <td><%= book.title%></td>
+      <td><%= book.published_on%></td>
+      <td><%= book.author.name%></td>
+    </tr>
+  <%end if @new_books%>
+</table>
